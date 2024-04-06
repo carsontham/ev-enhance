@@ -5,13 +5,16 @@ import (
 	"ev-enhance/app/infrastructure/repository"
 	"fmt"
 	"net/http"
+	"ev-enhance/app/infrastructure/service"
+	"context"
+	"ev-enhance/app/domain/model"
 )
 
 // http://localhost:3000/company/ev-information
 func GetEVInformation() http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 
-		var operator Operator
+		var operator model.Operator
 		if err := json.NewDecoder(req.Body).Decode(&operator); err != nil {
 			w.WriteHeader(http.StatusBadRequest)
 			return
@@ -19,26 +22,16 @@ func GetEVInformation() http.HandlerFunc {
 
 		fmt.Println("Get request is working..")
 		repo := repository.NewEVTransactionRepository()
-		var result int
+		//var result int
+//		result = repo.GetEVOperatorData(operator.operatorID) 
 
-		result = repo.GetEVOperatorData(operator.operatorID) 
+		
+		company, _ := repo.GetEVOperatorData2(operator)
+		client := service.NewClient("https://83b53cac-faa4-434a-a366-f491c3c74384.mock.pstmn.io//ev")
 
-		// TODO: take in chargerID, find the operator from DB
-		// In request, need to pass correct operator and chargerID
-		// $0.80 / KWH -> get from mock server
-
-		type DummyResponse struct {
-			Message string `json:"message"`
-			Data    []int  `json:"data"`
-		}
-
-		dummy := DummyResponse{
-			Message: "Dummy response message",
-			Data:    []int{1, 2, 3, 4, 5},
-		}
-
+		obj, _ := client.GetEVInformation(context.Background(), company.Charger_id)
 		// Serialize the dummy response to JSON
-		responseBody, err := json.Marshal(dummy)
+		responseBody, err := json.Marshal(obj)
 		if err != nil {
 			fmt.Println("Error marshalling dummy response:", err)
 			return
@@ -48,3 +41,17 @@ func GetEVInformation() http.HandlerFunc {
 
 	}
 }
+
+// func sendResultToPostman(result int) {
+// 	// Create a new client to interact with the mock Postman server
+// 	postmanEndpoint := "https://83b53cac-faa4-434a-a366-f491c3c74384.mock.pstmn.io//ev"
+// 	client := service.NewClient(postmanEndpoint)
+
+// 	// Send the result to the mock Postman server
+// 	err := client.SendIntegerToPostmanServer(result)
+// 	if err != nil {
+// 		fmt.Println("Error sending result to Postman server:", err)
+// 	} else {
+// 		fmt.Println("Result sent successfully to Postman server.")
+// 	}
+// }

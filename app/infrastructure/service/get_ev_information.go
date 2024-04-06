@@ -5,28 +5,31 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"ev-enhance/app/domain/model"
 	"ev-enhance/app/httpapi"
 	"fmt"
 	"io"
 	"net/http"
 )
 
-func (c *Client) GetEVInformation(ctx context.Context, id string) (model.EVInformation, error) {
+func (c *Client) GetEVInformation(ctx context.Context, id int) (*EVResponse, error) {
 
-	translateForm := EVRequestForm{}
+	evRequestForm := EVRequestForm{
+		operator: id,
+	}
+
 
 	api := &getEVInformationAPI{
-		endpoint: c.translateEndpoint,
+		endpoint: c.getEVRateEndpoint,
 		decorReq: httpapi.DecorateRequest(),
-		req:      translateForm,
+		req:      evRequestForm,
 	}
 
 	successful, err := c.httpClient.Call(ctx, api)
 	if successful {
-		return model.EVInformation{}, nil
+		return api.resp, nil
 	} else {
-		return model.EVInformation{}, err
+		fmt.Println("error in calling")
+		return nil, err
 	}
 }
 
