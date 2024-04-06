@@ -2,8 +2,9 @@ package api
 
 import (
 	"fmt"
-	"github.com/go-chi/chi/v5"
 	"net/http"
+
+	"github.com/go-chi/chi/v5"
 )
 
 type APIServer struct {
@@ -21,6 +22,4 @@ func NewAPIServer(listenAddr string) *APIServer {
 func (s *APIServer) StartServer() {
 	fmt.Println("Starting server... listening on port :3000")
 	http.ListenAndServe(s.listenAddr, s.router)
-	fmt.Println("Starting server... listening on port :3000")
-
 }
