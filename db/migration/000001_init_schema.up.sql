@@ -38,11 +38,11 @@ COMMENT ON TABLE "transactions" IS 'Stores transactions';
 
 ALTER TABLE "operators" ADD FOREIGN KEY ("name") REFERENCES "users" ("id");
 
-ALTER TABLE "chargers" ADD FOREIGN KEY ("name") REFERENCES "users" ("id");
+ALTER TABLE "chargers" ADD FOREIGN KEY ("operator_id") REFERENCES "operators" ("operator_id");
 
 ALTER TABLE "transactions" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 
-ALTER TABLE "transactions" ADD FOREIGN KEY ("operator_id") REFERENCES "operators" ("id");
+ALTER TABLE "transactions" ADD FOREIGN KEY ("operator_id") REFERENCES "operators" ("operator_id");
 
 INSERT INTO users (username, email, password_hash, address)
 VALUES ('john_doe', 'john@example.com', 'hashed_password', '123 Main St');
