@@ -14,7 +14,7 @@ CREATE TABLE "operators" (
 CREATE TABLE "chargers" (
   "charger_id" varchar PRIMARY KEY,
   "operator_id" bigserial,
-  "location" POINT
+  "location" bigserial
 );
 
 CREATE TABLE "transactions" (
@@ -51,10 +51,10 @@ INSERT INTO operators (operator_id, name)
 VALUES (1, 'SP Group'), (2, 'Schneider Electric');
 
 INSERT INTO chargers (charger_id, operator_id, location) 
-VALUES ('A1234X', 1, POINT(3,4));
+VALUES ('A1234X', 1, 2412);
 INSERT INTO chargers (charger_id, operator_id, location) 
-VALUES ('A3285X', 1, POINT(2,7));
+VALUES ('A3285X', 1, 5245);
 INSERT INTO chargers (charger_id, operator_id, location) 
-VALUES ('B3434T', 2, POINT(4,3));
+VALUES ('B3434T', 2, 1245);
 INSERT INTO chargers (charger_id, operator_id, location) 
-VALUES ('B2728T', 2, POINT(4,7));
+VALUES ('B2728T', 2, 4829);
