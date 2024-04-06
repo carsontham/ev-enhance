@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	err := godotenv.Load("app.env")
+	err := godotenv.Load(".env")
 	if err != nil {
 		log.Fatal("Some error occured. Err: ", err)
 	}

@@ -9,14 +9,13 @@ CREATE TABLE "users" (
 CREATE TABLE "operators" (
   "id" bigserial PRIMARY KEY,
   "name" bigserial NOT NULL,
-  "chargers_id" bigserial,
-  "point_id" bigserial 
+--   "chargers_id" bigserial,
+--   "point_id" bigserial
 );
 
 CREATE TABLE "chargers" (
   "id" bigserial PRIMARY KEY,
-  "name" bigserial NOT NULL,
-  "point_id" bigserial
+
 );
 
 CREATE TABLE "transactions" (
