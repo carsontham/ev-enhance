@@ -2,10 +2,9 @@ package service
 
 import (
 	"context"
-	"ev-enhance/app/domain/model"
 )
 
 type ExternalPartnerAPI interface {
-	GetEVInformation(ctx context.Context, s string) (model.EVInformation, error)
+	GetEVInformation(ctx context.Context, s int) (*EVResponse, error)
 	//CreatePayment(obj model.ExternalPartnerObject)
 }
