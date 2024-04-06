@@ -10,14 +10,13 @@ CREATE TABLE "operators" (
   "id" bigserial PRIMARY KEY,
   "name" bigserial NOT NULL,
   "chargers_id" bigserial,
-  "point" varchar
+  "point_id" bigserial 
 );
 
 CREATE TABLE "chargers" (
   "id" bigserial PRIMARY KEY,
   "name" bigserial NOT NULL,
   "point_id" bigserial,
-  "point" varchar
 );
 
 CREATE TABLE "transactions" (
@@ -31,7 +30,7 @@ CREATE TABLE "transactions" (
   "status" varchar
 );
 
-COMMENT ON TABLE "users" IS 'Stores user data';
+COMMENT ON TABLE "users" IS 'Stores user date';
 
 COMMENT ON TABLE "operators" IS 'Stores operators details';
 
