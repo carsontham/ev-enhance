@@ -38,3 +38,7 @@ dropdb:
 .PHONY: migrateup
 migrateup:
 	migrate -path db/migration -database "postgresql://root:secret@127.0.0.1:5432/ev-db?sslmode=disable" -verbose up
+
+.PHONY: server
+server:
+	go run app/cmd/main.go
