@@ -2,6 +2,6 @@ package repository
 
 type (
 	EVTransactionRepository interface {
-		GetEVPartner()
+		GetEVChargingInformation()
 	}
 )
