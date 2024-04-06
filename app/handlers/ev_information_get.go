@@ -11,9 +11,16 @@ import (
 func GetEVInformation() http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 
+		var charger Charger 
+
+		if err := json.NewDecoder(req.Body).Decode(&charger); err != nil {
+			w.WriteHeader(http.StatusBadRequest)
+			return
+		}
+
 		fmt.Println("Get request is working..")
 		repo := repository.NewEVTransactionRepository()
-		repo.GetData()
+		repo.GetEVOperatorData(charger.chargerID) 
 
 		// TODO: take in chargerID, find the operator from DB
 		// In request, need to pass correct operator and chargerID
