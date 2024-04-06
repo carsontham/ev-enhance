@@ -1,13 +1,13 @@
 package handlers
 
 import (
+	"context"
 	"encoding/json"
+	"ev-enhance/app/domain/model"
 	"ev-enhance/app/infrastructure/repository"
+	"ev-enhance/app/infrastructure/service"
 	"fmt"
 	"net/http"
-	"ev-enhance/app/infrastructure/service"
-	"context"
-	"ev-enhance/app/domain/model"
 )
 
 // http://localhost:3000/company/ev-information
@@ -23,15 +23,15 @@ func GetEVInformation() http.HandlerFunc {
 		fmt.Println("Get request is working..")
 		repo := repository.NewEVTransactionRepository()
 		//var result int
-//		result = repo.GetEVOperatorData(operator.operatorID) 
+		//		result = repo.GetEVOperatorData(operator.operatorID)
 
-		
 		company, _ := repo.GetEVOperatorData2(operator)
+		fmt.Println("company is ", company)
 		client := service.NewClient("https://83b53cac-faa4-434a-a366-f491c3c74384.mock.pstmn.io//ev")
-
-		obj, _ := client.GetEVInformation(context.Background(), company.Charger_id)
+		obj, _ := client.GetEVInformation(context.Background(), company.Operator_id)
 		// Serialize the dummy response to JSON
 		responseBody, err := json.Marshal(obj)
+		fmt.Println(responseBody)
 		if err != nil {
 			fmt.Println("Error marshalling dummy response:", err)
 			return

@@ -37,6 +37,7 @@ func (c caller) Call(ctx context.Context, api API) (successful bool, err error) 
 
 	req = req.WithContext(ctx)
 
+	fmt.Println("error before do")
 	resp, err := c.httpClient.Do(req)
 
 	if err != nil {
@@ -48,10 +49,11 @@ func (c caller) Call(ctx context.Context, api API) (successful bool, err error) 
 			fmt.Println(err)
 		}
 	}()
-
+	fmt.Println("error after api")
 	if err := api.ParseResponse(ctx, req, resp); err != nil {
+		fmt.Println("error in parsing response ")
 		return false, err
 	}
-
+	fmt.Println("error after after api")
 	return true, nil
 }
