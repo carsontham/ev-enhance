@@ -8,5 +8,6 @@ import (
 func GetEVInformation() http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		fmt.Println("Get request is working..")
+
 	}
 }

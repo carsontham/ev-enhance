@@ -31,6 +31,22 @@ func main() {
 		log.Fatal("Error while querying the db: ", err)
 	}
 	defer rows.Close()
+
+	for rows.Next() {
+		var userID int
+		var username string
+		var email string
+		var pw string
+		var address string
+
+		// Scan the values from the row into variables
+		if err := rows.Scan(&userID, &username, &email, &pw, &address); err != nil {
+			log.Fatal("Error scanning row: ", err)
+		}
+		// Print the values
+		fmt.Printf("User ID: %d, Username: %s, Email: %s\n", userID, username, email)
+		fmt.Println("out")
+	}
 	fmt.Println(rows)
 
 }
