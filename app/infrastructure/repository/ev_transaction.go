@@ -37,24 +37,22 @@ func (r EVTransactionRepository) GetEVOperatorData(charger_id string) int {
 		log.Fatal("Database connection is nil")
 	}
 
-	rows, err := db.Query("SELECT operator_id FROM chargers WHERE charger_id LIKE 'A%'")
+	row, err := db.Query("SELECT operator_id FROM chargers WHERE charger_id = ?", charger_id)
 	if err != nil {
 		log.Fatal("Error while querying the db: ", err)
 	}
-	defer rows.Close()
+	defer row.Close()
 
 	var operator_id int
 
-	for rows.Next() {
 
-		// Scan the values from the row into variables
-		if err := rows.Scan(&operator_id); err != nil {
-			log.Fatal("Error scanning row: ", err)
-		}
-		// Print the values
-		fmt.Printf("Operator ID: %d", operator_id)
-		fmt.Println("Finished Operation from GetData()")
+	// Scan the values from the row into variables
+	if err := row.Scan(&operator_id); err != nil {
+		log.Fatal("Error scanning row: ", err)
 	}
+		// Print the values
+	fmt.Printf("Operator ID: %d", operator_id)
+	fmt.Println("Finished Operation from GetData()")
 
 	log.Println("Successfully retrieved data from the database")
 	return operator_id
