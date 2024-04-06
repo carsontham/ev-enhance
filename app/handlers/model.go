@@ -1,5 +1,5 @@
 package handlers
 
-type Charger struct {
-    chargerID string
+type Operator struct {
+	operatorID string
 }
