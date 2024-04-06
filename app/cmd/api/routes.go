@@ -8,6 +8,7 @@ import (
 
 func (s *APIServer) SetupRoutes() {
 	// Endpoints				Method 		Function		Description
+
 	s.router.Route("/company", func(r chi.Router) {
 		r.Get("/ev-information", handlers.GetEVInformation())
 		r.Post("/ev-information", handlers.PostEVInformation())
