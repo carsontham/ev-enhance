@@ -14,7 +14,7 @@ CREATE TABLE "operators" (
 CREATE TABLE "chargers" (
   "charger_id" bigserial PRIMARY KEY,
   "operator_id" bigserial,
-  "location" POINT 
+  "location" POINT
 );
 
 CREATE TABLE "transactions" (
@@ -46,9 +46,3 @@ ALTER TABLE "transactions" ADD FOREIGN KEY ("operator_id") REFERENCES "operators
 
 INSERT INTO users (username, email, password_hash, address)
 VALUES ('john_doe', 'john@example.com', 'hashed_password', '123 Main St');
-
-
-
-
-AXXXXXXE      OPERATOR A
-BXXXXXT       OPERATOR B
