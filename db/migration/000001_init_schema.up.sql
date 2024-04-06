@@ -8,11 +8,11 @@ CREATE TABLE "users" (
 
 CREATE TABLE "operators" (
   "operator_id" bigserial PRIMARY KEY,
-  "name" bigserial NOT NULL
+  "name" varchar NOT NULL
 );
 
 CREATE TABLE "chargers" (
-  "charger_id" bigserial PRIMARY KEY,
+  "charger_id" varchar PRIMARY KEY,
   "operator_id" bigserial,
   "location" POINT
 );
@@ -36,13 +36,25 @@ COMMENT ON TABLE "chargers" IS 'Stores operators details';
 
 COMMENT ON TABLE "transactions" IS 'Stores transactions';
 
-ALTER TABLE "operators" ADD FOREIGN KEY ("name") REFERENCES "users" ("id");
+--ALTER TABLE "operators" ADD FOREIGN KEY ("name") REFERENCES "users" ("id");
 
-ALTER TABLE "chargers" ADD FOREIGN KEY ("operator_id") REFERENCES "operators" ("operator_id");
+--ALTER TABLE "chargers" ADD FOREIGN KEY ("operator_id") REFERENCES "operators" ("operator_id");
 
-ALTER TABLE "transactions" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
+--ALTER TABLE "transactions" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id");
 
-ALTER TABLE "transactions" ADD FOREIGN KEY ("operator_id") REFERENCES "operators" ("operator_id");
+--ALTER TABLE "transactions" ADD FOREIGN KEY ("operator_id") REFERENCES "operators" ("operator_id");
 
 INSERT INTO users (username, email, password_hash, address)
 VALUES ('john_doe', 'john@example.com', 'hashed_password', '123 Main St');
+
+INSERT INTO operators (operator_id, name)
+VALUES (1, 'SP Group'), (2, 'Schneider Electric');
+
+INSERT INTO chargers (charger_id, operator_id, location) 
+VALUES ('A1234X', 1, POINT(3,4));
+INSERT INTO chargers (charger_id, operator_id, location) 
+VALUES ('A3285X', 1, POINT(2,7));
+INSERT INTO chargers (charger_id, operator_id, location) 
+VALUES ('B3434T', 2, POINT(4,3));
+INSERT INTO chargers (charger_id, operator_id, location) 
+VALUES ('B2728T', 2, POINT(4,7));
