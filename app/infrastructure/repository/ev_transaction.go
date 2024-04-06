@@ -47,17 +47,43 @@ func (r EVTransactionRepository) GetEVOperatorData(charger_id string) int {
 
 	var operator_id int
 
-
 	// Scan the values from the row into variables
 	if err := row.Scan(&operator_id); err != nil {
 		log.Fatal("Error scanning row: ", err)
 	}
-		// Print the values
+	// Print the values
 	fmt.Printf("Operator ID: %d", operator_id)
 	fmt.Println("Finished Operation from GetData()")
 
 	log.Println("Successfully retrieved data from the database")
 	return operator_id
+}
+
+func (r EVTransactionRepository) GetEVOperatorData2(arg model.Operator) (model.Operators, error) {
+	const getCharger = `
+	SELECT 
+	charger_id,
+	chargers.operator_id, 
+	location,
+	operators.name
+FROM chargers JOIN operators ON chargers.operator_id = operators.operator_id
+WHERE charger_id = $1
+	`
+	// Call the getDB function to obtain the database connection
+	db := r.getDB()
+	// Check for errors
+	if db == nil {
+		return model.Operators{}, fmt.Errorf("database connection is nil")
+	}
+	row := db.QueryRow(getCharger, arg.Charger_id)
+	var i model.Operators
+	err := row.Scan(
+		&i.Charger_id,
+		&i.Operator_id,
+		&i.Location,
+		&i.Name,
+	)
+	return i, err
 }
 
 func (r EVTransactionRepository) PostData(arg model.EVTransaction) (model.EVTransaction, error) {
