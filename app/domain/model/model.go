@@ -22,11 +22,11 @@ type EVTransaction struct {
 }
 
 type Operators struct {
-	Charger_id  string `json:"charger_id"`
-	Operator_id int    `json:"operator_id"`
-	Location    string `json:"location"`
-	// Rate_kwh    float64 `json:"rate_kwh"`
-	Name string `json:"name"`
+	Charger_id  string  `json:"charger_id"`
+	Operator_id int     `json:"operator_id"`
+	Location    string  `json:"location"`
+	Rate_kwh    float64 `json:"rate_kwh"`
+	Name        string  `json:"name"`
 }
 
 type Operator struct {

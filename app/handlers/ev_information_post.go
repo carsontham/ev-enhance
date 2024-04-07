@@ -8,7 +8,6 @@ import (
 )
 
 // PostEVInformation ...
-
 func PostEVInformation() http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 
