@@ -5,6 +5,6 @@ import (
 )
 
 type ExternalPartnerAPI interface {
-	GetEVInformation(ctx context.Context, s int) (*EVResponse, error)
+	GetEVInformation(ctx context.Context, s int, chargerID string) (*EVResponse, error)
 	//CreatePayment(obj model.ExternalPartnerObject)
 }

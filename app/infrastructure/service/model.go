@@ -1,7 +1,8 @@
 package service
 
 type EVRequestForm struct {
-	operator int `json:operator_id`
+	Operator  int    `json:"operator_id"`
+	ChargerID string `json:"charger_id"`
 }
 
 type EVResponse struct {
