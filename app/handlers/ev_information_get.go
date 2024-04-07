@@ -10,7 +10,6 @@ import (
 	"net/http"
 )
 
-// http://localhost:3000/company/ev-information
 func GetEVInformation() http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 

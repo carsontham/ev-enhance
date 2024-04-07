@@ -48,7 +48,7 @@ func (api *getEVInformationAPI) BuildRequest(ctx context.Context) (*http.Request
 		return nil, err
 	}
 
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, api.endpoint, bytes.NewReader(body))
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, api.endpoint, bytes.NewReader(body))
 	if err != nil {
 		return nil, err
 	}
