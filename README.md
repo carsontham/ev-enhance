@@ -2,10 +2,11 @@
 
 This project is built during a hackathon - Hackomania 2024.
 
-EV Enhance aims to create an API-centric app that allows for a one-stop platform for all the different major EV companies.
-The MVP aims to onboard all EV Partners and interface them to one platform.
+EV Enhance aims to create an API-centric app that allows for a one-stop platform for all the different major EV companies. The MVP aims to onboard all EV Partners and interface them to one platform.
 
-## Steps to run
+The backend service calls a Mock Postman Server and is meant to be paired together with [`ev-enhance-ios`](https://github.com/carsontham/ev-enhance-ios), an iOS application developed in Swift.
+
+## Steps to run backend service
 
 1. Ensure Golang is installed.
 
@@ -29,4 +30,7 @@ make start-and-migrate
 make server
 ```
 
-5. 
+## Steps to run iOS application
+1. Ensure Xcode is installed from App Store
+2. Run the application on an iPhone 12 Emulator
+3. Ensure backend service is up to test the full MVP.
