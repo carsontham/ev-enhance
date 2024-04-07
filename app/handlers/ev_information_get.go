@@ -22,18 +22,14 @@ func GetEVInformation() http.HandlerFunc {
 
 		fmt.Println("Get request is working..")
 		repo := repository.NewEVTransactionRepository()
-		//var result int
-		//		result = repo.GetEVOperatorData(operator.operatorID)
 
 		company, _ := repo.GetEVOperatorData2(operator)
-		fmt.Println("company is ", company, "operator id is ", company.Operator_id)
+
 		client := service.NewClient("https://83b53cac-faa4-434a-a366-f491c3c74384.mock.pstmn.io//ev")
 		obj, _ := client.GetEVInformation(context.Background(), company.Operator_id, company.Charger_id)
-		// Serialize the dummy response to JSON
+
 		responseBody, err := json.Marshal(obj)
-		fmt.Println(responseBody)
 		if err != nil {
-			fmt.Println("Error marshalling dummy response:", err)
 			return
 		}
 
@@ -41,17 +37,3 @@ func GetEVInformation() http.HandlerFunc {
 
 	}
 }
-
-// func sendResultToPostman(result int) {
-// 	// Create a new client to interact with the mock Postman server
-// 	postmanEndpoint := "https://83b53cac-faa4-434a-a366-f491c3c74384.mock.pstmn.io//ev"
-// 	client := service.NewClient(postmanEndpoint)
-
-// 	// Send the result to the mock Postman server
-// 	err := client.SendIntegerToPostmanServer(result)
-// 	if err != nil {
-// 		fmt.Println("Error sending result to Postman server:", err)
-// 	} else {
-// 		fmt.Println("Result sent successfully to Postman server.")
-// 	}
-// }
