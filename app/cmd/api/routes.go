@@ -11,6 +11,6 @@ func (s *APIServer) SetupRoutes() {
 
 	s.router.Route("/company", func(r chi.Router) {
 		r.Post("/ev-information", handlers.GetEVInformation())
-		r.Post("/ev-information", handlers.PostEVInformation())
+		r.Get("/ev-information", handlers.PostEVInformation())
 	})
 }

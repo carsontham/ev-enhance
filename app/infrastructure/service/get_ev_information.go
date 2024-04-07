@@ -23,7 +23,7 @@ func (c *Client) GetEVInformation(ctx context.Context, id int, chargerID string)
 		decorReq: httpapi.DecorateRequest(),
 		req:      evRequestForm,
 	}
-
+	fmt.Println("calling mock server...")
 	successful, err := c.httpClient.Call(ctx, api)
 	if successful {
 		return api.resp, nil
