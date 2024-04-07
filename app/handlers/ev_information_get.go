@@ -26,9 +26,9 @@ func GetEVInformation() http.HandlerFunc {
 		//		result = repo.GetEVOperatorData(operator.operatorID)
 
 		company, _ := repo.GetEVOperatorData2(operator)
-		fmt.Println("company is ", company)
+		fmt.Println("company is ", company, "operator id is ", company.Operator_id)
 		client := service.NewClient("https://83b53cac-faa4-434a-a366-f491c3c74384.mock.pstmn.io//ev")
-		obj, _ := client.GetEVInformation(context.Background(), company.Operator_id)
+		obj, _ := client.GetEVInformation(context.Background(), company.Operator_id, company.Charger_id)
 		// Serialize the dummy response to JSON
 		responseBody, err := json.Marshal(obj)
 		fmt.Println(responseBody)

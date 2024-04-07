@@ -11,10 +11,11 @@ import (
 	"net/http"
 )
 
-func (c *Client) GetEVInformation(ctx context.Context, id int) (*EVResponse, error) {
+func (c *Client) GetEVInformation(ctx context.Context, id int, chargerID string) (*EVResponse, error) {
 
 	evRequestForm := EVRequestForm{
-		operator: id,
+		Operator:  id,
+		ChargerID: chargerID,
 	}
 
 	api := &getEVInformationAPI{
@@ -43,6 +44,7 @@ type getEVInformationAPI struct {
 
 func (api *getEVInformationAPI) BuildRequest(ctx context.Context) (*http.Request, error) {
 	body, err := json.Marshal(api.req)
+	fmt.Println(string(body))
 	if err != nil {
 		fmt.Println("error in building req")
 		return nil, err
